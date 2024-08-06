@@ -12,6 +12,9 @@
       height: 126px;
       min-height: auto;
       overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .EventCard__descriptionContainer {
       padding: 0;
