@@ -3,7 +3,7 @@ import { getMonth } from "../../helpers/Date";
 
 import "./style.scss";
 
-// Définition du composant EventCard avec destructuration des props
+// EventCard avec destructuration des props
 const EventCard = ({
   imageSrc,
   imageAlt,
