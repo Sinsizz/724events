@@ -8,10 +8,10 @@ import Button, { BUTTON_TYPES } from "../../components/Button";
 const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500); })
 
 const Form = ({ onSuccess, onError }) => {
-  // État pour gérer l'envoi du formulaire (inchangé)
+  // État pour gérer l'envoi du formulaire 
   const [sending, setSending] = useState(false);
 
-  // Fonction de soumission du formulaire (modifiée)
+  // Fonction de soumission du formulaire 
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
@@ -19,20 +19,15 @@ const Form = ({ onSuccess, onError }) => {
       try {
         await mockContactApi();
         setSending(false);
-        // MODIFICATION : Ajout de l'appel à onSuccess
-        // Cette ligne était manquante, ce qui causait l'échec du test
-        onSuccess(); // Appelle la fonction de succès après une soumission réussie
+        onSuccess();
       } catch (err) {
         setSending(false);
         onError(err);
       }
     },
-    // MODIFICATION : Ajout de onSuccess et onError dans les dépendances
-    // Cela assure que sendContact sera mis à jour si ces props changent
     [onSuccess, onError]
   );
 
-  // Le reste du composant est inchangé
   return (
     <form onSubmit={sendContact}>
       <div className="row">
@@ -63,7 +58,6 @@ const Form = ({ onSuccess, onError }) => {
   );
 };
 
-// PropTypes et defaultProps sont inchangés
 Form.propTypes = {
   onError: PropTypes.func,
   onSuccess: PropTypes.func,

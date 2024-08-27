@@ -2,9 +2,10 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState } from "react";
 import PropTypes from "prop-types";
-
 import "./style.scss";
 
+
+  // Composant Select personnalisable
 const Select = ({
   selection,
   onChange,
@@ -15,13 +16,15 @@ const Select = ({
 }) => {
   const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
+
+   // Gère le changement de valeur sélectionnée
   const changeValue = (newValue) => {
-    // Modification 1: Passer la nouvelle valeur au parent
-    onChange(newValue); // Au lieu de onChange() sans argument
+    onChange(newValue);
     setValue(newValue);
-    // Modification 2: Toujours fermer le menu après une sélection
-    setCollapsed(true); // Au lieu de setCollapsed(newValue)
+    setCollapsed(true);
   };
+
+
   return (
     <div className={`SelectContainer ${type}`} data-testid="select-testid">
       {label && <div className="label">{label}</div>}

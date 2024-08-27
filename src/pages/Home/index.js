@@ -117,24 +117,15 @@ const Page = () => {
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
         {last ? (
-  // Si 'last' existe (c'est-à-dire qu'il y a un dernier événement), on affiche l'EventCard
   <EventCard
-    // L'URL de l'image de couverture de l'événement
     imageSrc={last.cover}
-    // Le titre de l'événement
     title={last.title}
-    // La date de l'événement, convertie en objet Date
-    // Cette conversion est importante car EventCard attend un objet Date
     date={new Date(last.date)}
-    // Prop 'small' définie à true pour utiliser la version réduite de la carte
-    // Cela correspond probablement à un design spécifique pour l'affichage dans le footer
     small
-    // Le type d'événement est utilisé comme label
-    // Cela permet d'afficher une catégorisation visuelle de l'événement
     label={last.type}
   />
 ) : (
-  // Si 'last' n'existe pas (pas d'événement récent), on affiche un message
+  // Si 'last' n'existe pas (pas d'événement récent), on affiche ce message
   <p>Aucune prestation récente à afficher</p>
 )}
       </div>

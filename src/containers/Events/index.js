@@ -11,14 +11,15 @@ const PER_PAGE = 12;
 
 const EventList = () => {
   const { data, error } = useData();
-  // Modification 1: Initialisation de type à null au lieu de undefined
+ 
   const [type, setType] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
-  // Modification 2: Utilisation de useMemo pour optimiser le filtrage et la pagination
+  
+  // Filtrer et paginer les événements
   const filteredEvents = useMemo(() => {
     if (!data?.events) return [];
-    // Modification 3: Logique de filtrage corrigée
+   
     return (type ? data.events.filter(event => event.type === type) : data.events)
       .filter((_, index) => {
         const start = (currentPage - 1) * PER_PAGE;
@@ -27,15 +28,14 @@ const EventList = () => {
       });
   }, [data, type, currentPage]);
 
-  // Modification 4: Simplification de la fonction changeType
+  // Changer le type d'événement et réinitialiser la page
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
   };
 
-  // Modification 5: Calcul correct du nombre de pages
+   // Calculer le nombre de pages et la liste des types d'événements
   const pageNumber = Math.ceil((data?.events?.length || 0) / PER_PAGE);
-  // Modification 6: Gestion des cas où data.events pourrait être undefined
   const typeList = new Set(data?.events?.map((event) => event.type) || []);
 
   return (
@@ -46,7 +46,6 @@ const EventList = () => {
       ) : (
         <>
           <h3 className="SelectTitle">Catégories</h3>
-          {/* Modification 7: Simplification de l'appel à changeType */}
           <Select
             selection={Array.from(typeList)}
             onChange={(value) => changeType(value)}
